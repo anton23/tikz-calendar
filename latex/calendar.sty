@@ -1,0 +1,185 @@
+\usepackage{ifthen}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{calc}
+\hyphenation{Performance}
+\hyphenation{Balancing}
+
+\definecolor{mylight}{RGB}{220,235,221}
+\definecolor{myblue}{RGB}{160,213,214}
+\definecolor{myyellow}{RGB}{173,154,39}
+\definecolor{mydark}{RGB}{242,92,5}
+\definecolor{mygreen}{RGB}{147,166,5}
+\definecolor{myred}{RGB}{204,39,56}
+
+\colorlet{color1}{mylight}
+\colorlet{color2}{myblue}
+\colorlet{color3}{myyellow!60}
+\colorlet{color4}{mydark!50}
+\colorlet{color5}{mygreen!70}
+\colorlet{color6}{myred!50}
+
+\tikzset{
+  rectangle with rounded corners north west/.initial=4pt,
+  rectangle with rounded corners south west/.initial=4pt,
+  rectangle with rounded corners north east/.initial=4pt,
+  rectangle with rounded corners south east/.initial=4pt,
+}
+\makeatletter
+\pgfdeclareshape{rectangle with rounded corners}{
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{north}
+  \inheritanchor[from=rectangle]{south}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  \inheritanchor[from=rectangle]{north east}
+  \inheritanchor[from=rectangle]{south east}
+  \inheritanchor[from=rectangle]{north west}
+  \inheritanchor[from=rectangle]{south west}
+  \backgroundpath{% this is new
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    % construct main path
+    \pgfkeysgetvalue{/tikz/rectangle with rounded corners north west}{\pgf@rectc}
+    \pgfsetcornersarced{\pgfpoint{\pgf@rectc}{\pgf@rectc}}
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+    \pgfkeysgetvalue{/tikz/rectangle with rounded corners north east}{\pgf@rectc}
+    \pgfsetcornersarced{\pgfpoint{\pgf@rectc}{\pgf@rectc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+    \pgfkeysgetvalue{/tikz/rectangle with rounded corners south east}{\pgf@rectc}
+    \pgfsetcornersarced{\pgfpoint{\pgf@rectc}{\pgf@rectc}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@ya}}
+    \pgfkeysgetvalue{/tikz/rectangle with rounded corners south west}{\pgf@rectc}
+    \pgfsetcornersarced{\pgfpoint{\pgf@rectc}{\pgf@rectc}}
+    \pgfpathclose
+ }
+}
+\makeatother
+
+
+\newcommand*\daywidth{22cm}
+\newcommand*\titlewidth{13cm} % daywidth - sessionWidth - width of time column
+\newcommand*\sessionWidth{2cm}
+\newcommand*\hourheight{6em}
+
+\newcommand*\hourline{0.02}
+\newcommand*\halfhourline{0.01}
+\newcommand*\quarterhourline{0.005}
+
+\newcommand*\hourlineright{0}
+\newcommand*\halfhourlineright{0}
+\newcommand*\quarterhourlineright{0}
+
+
+\tikzset{wherelabel/.style= {
+    font=\sffamily,
+    inner sep=0.1em,
+    anchor = south east,
+    xshift = -0.1em,
+    yshift = 0.1em,
+}}
+
+\tikzset{whenlabel/.style= {
+    font=\sffamily,
+    inner sep=0.1em,
+    anchor = north west,
+    xshift = 0.1em,
+    yshift = -0.1em,
+}}
+
+\tikzset{timelabel/.style= {
+    font=\sffamily\large,
+    inner sep=0.1em,
+}}
+
+\tikzset{daytitle/.style = {
+    font = \sffamily\large\bfseries,
+    anchor = south,
+    yshift = {0.15*\hourheight}
+}}
+
+
+\tikzset{columntitle/.style = {
+    font = \sffamily\large\bfseries,
+    anchor = bottom left corner,
+    trapezium,
+    trapezium left angle = 70,
+    trapezium right angle = -70,
+    text width = {\daywidth*#1-1em-2pt},
+    text centered,
+    fill opacity = 0.5,
+    text opacity = 1
+}}
+
+\tikzset{calendar/.style = {
+    baseline = (current bounding box.north),
+    scale = 0.8,
+    transform shape,
+    y = -\hourheight,
+    x = \daywidth
+}}
+
+\tikzset{entry/.style 2 args={
+    xshift={0.25em},
+    draw,
+    font=\sffamily,
+    line width=0.2pt,
+    rectangle,
+    rounded corners = 2pt,
+    fill=blue!20,
+    anchor=north west,
+    inner sep=0.1em,
+    text width={\daywidth*#2-0.5em - 0.25em},
+    minimum height={#1*\hourheight-0.4em},
+    yshift = {-0.2em},
+    text centered
+}}
+
+\tikzset{entryS/.style 2 args={
+    shape = rectangle with rounded corners,
+    rectangle with rounded corners north west = 0pt,
+    rectangle with rounded corners south west = 0pt,
+    rectangle with rounded corners north east = 2pt,
+    rectangle with rounded corners south east = 2pt,
+    line width=0.2pt,
+    anchor=north west,
+    xshift={0.25em + \sessionWidth},
+    text width={\daywidth*#2-0.5em - \sessionWidth - 0.25em},
+    font=\sffamily,
+    fill=blue!20,
+    minimum height={#1*\hourheight-0.4em},
+    draw,
+    inner sep=0.1em,
+    yshift = {-0.2em}
+}}
+
+
+
+\tikzset{entryR/.style = {
+    shape = rectangle with rounded corners,
+    rectangle with rounded corners north west = 2pt,
+    rectangle with rounded corners south west = 0pt,
+    rectangle with rounded corners north east = 2pt,
+    rectangle with rounded corners south east = 0pt,
+    line width=0.2pt,
+    rotate=90,
+    anchor = north east,
+    xshift = -0.2em,
+    yshift = -0.25em,
+    font = \sffamily,
+    minimum height = \sessionWidth,
+    text width = {#1*\hourheight - 0.6em},
+    fill = blue!10,
+    inner sep=0.1em,
+    draw,
+    text centered
+}}
+
+

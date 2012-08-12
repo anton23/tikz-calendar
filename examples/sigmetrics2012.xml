@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<TikZCalendar>
+
+<GoogleEvents feed_uri = "https://www.google.com/calendar/feeds/djp7d7ehe4ohbonoo1c2iee2m0%40group.calendar.google.com/public/basic"/>
+
+<ColourMap default="color1">
+    <set location="" colour="color1"/>
+    <set location="308" colour="color2"/>
+    <set location="Huxley 308" colour="color2"/>
+    <set location="344" colour="color1"/>
+    <set location="311" colour="color6"/>
+    <set location="343" colour="color5"/>
+    <set location="145" colour="color4"/>
+    <set location="Huxley 343/344" colour="color1"/>
+    <set location="Physics Common Room" colour="color3"/>
+    <set location="Queen's Gate Entrance" colour="color3"/>
+    <set location="Thames River" colour="color3"/>
+    <set location="Westminster Pier" colour="color3"/>
+    <set location="Level 4 Common Room" colour="color3"/>
+</ColourMap>
+
+<ColumnMap id="monday1">
+    <column title="GreenMetrics" xpos="0.0" width="0.5" colour="color2"/>
+    <column title="W-PIN" xpos="0.5" width="0.5" colour="color6"/>
+
+    <set location="308" xpos="0" width="0.5"/>
+    <set location="311" xpos="0.5" width="0.5"/>
+    <set location="344" xpos="0" width="1.0"/>
+    <set location="" xpos="0" width="1.0"/>
+</ColumnMap>
+
+
+<ColumnMap id="monday2">
+    <column title="SIGMETRICS Tutorials" xpos="0.0" width="0.5" colour="color4"/>
+    <column title="SIGMETRICS Tutorials" xpos="0.5" width="0.5" colour="color5"/>
+
+    <set location="145" xpos="0" width="0.5"/>
+    <set location="343" xpos="0.5" width="0.5"/>
+    <set location="344" xpos="0" width="1.0"/>
+    <set location="" xpos="0" width="1.0"/>
+    <set location="Physics Common Room" xpos="0" width="1"/>
+</ColumnMap>
+
+<ColumnMap id="conference" max_length="100">
+    <set location="" xpos="0" width="1"/>
+    <set location="308" xpos="0" width="1"/>
+    <set location="344" xpos="0" width="1"/>
+    <set location="Physics Common Room" xpos="0" width="1"/>
+    <set location="Westminster Pier" xpos="0" width="1"/>
+    <set location="Queen's Gate Entrance" xpos="0" width="1"/>
+</ColumnMap>
+
+<ColumnMap id="friday1">
+    <column title="MAMA" xpos="0" width="0.88" colour="color6"/>
+    <column title="NetFPGA" xpos="0.88" width="0.12" colour="color5"/>
+
+    <set location="" xpos="0" width="1"/>
+    <set location="311" xpos="0" width="0.88"/>
+    <set location="343" xpos="0.88" width="0.12"/>
+    <set location="344" xpos="0" width="1"/>
+    <ColumnException title="Short Break" xpos="0" width="0.88"/>
+</ColumnMap>
+
+<ColumnMap id="friday2">
+    <set location="" xpos="0" width="1"/>
+    <set location="308" xpos="0" width="1"/>
+    <set location="344" xpos="0" width="1"/>
+</ColumnMap>
+
+<Calendar output="examples/generated/monday1morning.tex" columnMap="monday1" daytitle="False">
+    <start year="2012" month="6" day="11"/>
+    <end year="2012" month="6" day="11"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="13" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/monday1afternoon.tex" columnMap="monday1" daytitle="False">
+    <start year="2012" month="6" day="11"/>
+    <end year="2012" month="6" day="11"/>
+    <minTime hour="14" minute="0"/>
+    <maxTime hour="18" minute="0"/>
+</Calendar>
+
+
+<Calendar output="examples/generated/monday2morning.tex" columnMap="monday2" daytitle="False"
+    sessionTitles="False">
+    <start year="2012" month="6" day="11"/>
+    <end year="2012" month="6" day="11"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="13" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/monday2afternoon.tex" columnMap="monday2" daytitle="False"
+    sessionTitles="False">
+    <start year="2012" month="6" day="11"/>
+    <start year="2012" month="6" day="11"/>
+    <end year="2012" month="6" day="11"/>
+    <minTime hour="14" minute="0"/>
+    <maxTime hour="19" minute="0"/>
+</Calendar>
+
+
+<Calendar output="examples/generated/sigmetrics1.tex" columnMap="conference" daytitle="False">
+    <start year="2012" month="6" day="12"/>
+    <end year="2012" month="6" day="12"/>
+    <minTime hour="7" minute="45"/>
+    <maxTime hour="18" minute="45"/>
+</Calendar>
+
+<Calendar output="examples/generated/sigmetrics2.tex" columnMap="conference" daytitle="False">
+    <start year="2012" month="6" day="13"/>
+    <end year="2012" month="6" day="13"/>
+    <minTime hour="8" minute="0"/>
+    <maxTime hour="19" minute="0"/>
+</Calendar>
+
+<Calendar output="examples/generated/sigmetrics3.tex" columnMap="conference" daytitle="False">
+    <start year="2012" month="6" day="14"/>
+    <end year="2012" month="6" day="14"/>
+    <minTime hour="8" minute="0"/>
+    <maxTime hour="19" minute="0"/>
+</Calendar>
+
+<Calendar output="examples/generated/friday1.tex" columnMap="friday1" daytitle="False"
+          sessionTitles="False">
+    <start year="2012" month="6" day="15"/>
+    <end year="2012" month="6" day="15"/>
+    <minTime hour="8" minute="0"/>
+    <maxTime hour="19" minute="15"/>
+</Calendar>
+
+<Calendar output="examples/generated/friday2.tex" columnMap="friday2" daytitle="False">
+    <start year="2012" month="6" day="15"/>
+    <end year="2012" month="6" day="15"/>
+    <minTime hour="8" minute="0"/>
+    <maxTime hour="13" minute="30"/>
+</Calendar>
+
+
+</TikZCalendar>

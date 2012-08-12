@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<TikZCalendar>
+
+<GoogleEvents feed_uri="https://www.google.com/calendar/feeds/uap13rdfkt473klphn1fimnd0c%40group.calendar.google.com/public/basic"/>
+
+<ColourMap default="color1">
+    <set location="" colour="color1"/>
+    <set location="Room G34" colour="color2"/>
+    <set location="Room A" colour="color4"/>
+    <set location="Room B" colour="color5"/>
+    <set location="Senior Common Room" colour="color3"/>
+    <set location="58 Prince's Gate" colour="color3"/>
+    <set location="Queen's Tower" colour="color1"/>
+    <set location="TBC" colour="color3"/>
+    <set location=" " colour="white, opacity=0.9"/>
+</ColourMap>
+
+<ColumnMap id="Tutorials">
+    <set location="Room G34" xpos="0.8" width="0.2"/>
+    <set location="Room A" xpos="0" width="0.6"/>
+    <set location="Room B" xpos="0.6" width="0.2"/>
+    <set location="" xpos="0" width="1"/>
+    <set location="58 Prince's Gate" xpos="0" width="1"/>
+    <set location="Queen's Tower" xpos="0" width="1"/>
+    <ColumnException title="Keynote" xpos="0" width="1"/>
+</ColumnMap>
+
+
+<ColumnMap id="QEST" min_dur="0.25" max_length="110">
+    <set location="Room G34" xpos="0" width="1"/>
+    <set location="" xpos="0" width="1"/>
+    <set location="Senior Common Room" xpos="0" width="1"/>
+    <set location="Queen's Tower" xpos="0" width="1"/>
+
+    <TalkException title="Specification and computation of passage-time distributions in GPA" new_authors = "Kohut, Hayden, Stefanek, Bradley"/>
+</ColumnMap>
+
+<ColumnMap id="FORMATS" min_dur="0.25" max_length="110">
+    <set location="Room A" xpos="0" width="1"/>
+    <set location="" xpos="0" width="1"/>
+    <set location=" " xpos="0" width="1"/>
+    <set location="Senior Common Room" xpos="0" width="1"/>
+    <set location="Queen's Tower" xpos="0" width="1"/>
+</ColumnMap>
+
+
+<Calendar output="examples/generated/qest0.tex" columnMap="Tutorials" daytitle="False">
+    <start year="2012" month="9" day="17"/>
+    <end year="2012" month="9" day="17"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="19" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/qest1.tex" columnMap="QEST" daytitle="False">
+    <start year="2012" month="9" day="18"/>
+    <end year="2012" month="9" day="18"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="19" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/qest2.tex" columnMap="QEST" daytitle="False">
+    <start year="2012" month="9" day="19"/>
+    <end year="2012" month="9" day="19"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="19" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/qest3.tex" columnMap="QEST" daytitle="False">
+    <start year="2012" month="9" day="20"/>
+    <end year="2012" month="9" day="20"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="14" minute="00"/>
+</Calendar>
+
+<Calendar output="examples/generated/formats1.tex" columnMap="FORMATS" daytitle="False">
+    <start year="2012" month="9" day="18"/>
+    <end year="2012" month="9" day="18"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="19" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/formats2.tex" columnMap="FORMATS" daytitle="False">
+    <start year="2012" month="9" day="19"/>
+    <end year="2012" month="9" day="19"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="19" minute="30"/>
+</Calendar>
+
+<Calendar output="examples/generated/formats3.tex" columnMap="FORMATS" daytitle="False">
+    <start year="2012" month="9" day="20"/>
+    <end year="2012" month="9" day="20"/>
+    <minTime hour="8" minute="30"/>
+    <maxTime hour="14" minute="00"/>
+</Calendar>
+
+
+</TikZCalendar>

@@ -1,0 +1,144 @@
+\documentclass[12pt,a4paper,oneside,openany,extrafontsizes]{memoir}
+
+\parskip 3mm    % space between paragraphs
+\parindent 0mm   % indent for new paragraph
+%\textwidth 4.5in  % width of text
+%\columnsep 0.8in  % separation between columns
+
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{layout}
+
+\usepackage{geometry}
+\geometry{left=15mm,top=14mm,right=10mm,bottom=10mm} %margins
+
+\usepackage{graphicx}
+
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{color,framed}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+
+\usepackage{../latex/calendar}
+
+\newcommand{\inputDay}[1]{
+\hspace{-8mm}
+    \scalebox{1}{\input{#1}}
+%    \scalebox{0.78}{\input{#1}}
+}
+
+\usepackage{multicol}
+
+\setlength\columnsep{3mm}
+\setlength{\headsep}{12mm}
+
+\setlength{\beforechapskip}{0pt}
+\setlength{\topskip}{0pt}
+
+\setbeforesubsubsecskip{1ex}
+\setaftersubsubsecskip{1ex}
+
+\setbeforesubsecskip{2ex}
+\setaftersubsecskip{1ex}
+
+
+\renewcommand{\bf}{\textbf}
+\renewcommand{\it}{\textit}
+\renewcommand{\sl}{\textit}
+\renewcommand{\rm}{\textnormal}
+
+\renewcommand{\cleardoublepage}{\clearpage}
+\renewcommand{\afterchaptertitle}{}
+
+%\chapterstyle{madsen}
+
+\renewcommand{\chapterheadstart}{}
+\renewcommand{\printchapternonum}{}
+\renewcommand{\printchaptertitle}[1]{}
+\renewcommand{\afterchaptertitle}{}
+
+
+\usepackage{lipsum}
+\usepackage{tikz}
+
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault}
+
+\usetikzlibrary{calc}
+
+\definecolor{b1}{RGB}{106,130,174}
+\definecolor{topc}{RGB}{00,63,122}
+
+\newcommand{\pageBackground}{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[topc] (current page.north west) rectangle ($(current page.north
+        east) + (0mm,-15mm)$);
+    \end{tikzpicture}
+}
+
+\makeevenhead{plain}{}{\pageBackground\large\textbf{\textcolor{white}{\rightmark}}}{\large\textbf{\textcolor{white}{}}}
+\makeoddhead{plain}{\pageBackground\large\textbf{\textcolor{white}{}}}{\large\textbf{\textcolor{white}{\rightmark}}}{}
+
+\makeevenhead{headings}{}{\pageBackground\large\textbf{\textcolor{white}{\rightmark}}}{\large\textbf{\textcolor{white}{}}}
+\makeoddhead{headings}{\pageBackground\large\textbf{\textcolor{white}{}}}{\large\textbf{\textcolor{white}{\rightmark}}}{}
+
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+\makeevenfoot{headings}{}{}{}
+\makeoddfoot{headings}{}{}{}
+
+
+\usepackage{array}
+\newcolumntype{M}{>{\centering\arraybackslash}m{\dimexpr.25\linewidth-2\tabcolsep}}
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+\tikzset{
+    adbox/.style={
+        rectangle, fill=black, rotate=90, draw=black,
+        at = (ad.south east),
+        anchor = north west
+    }
+}
+
+\hyphenation{synthesis automata tutorial}
+\begin{document}
+
+\frontmatter
+
+\thispagestyle{empty}
+
+%\begin{centering}
+%{\bf 
+%{\HUGE\Huge SIGMETRICS/Performance 2012\\}\vspace{12pt}
+%{\large June 11-15, London\\}
+%}
+%\end{centering}
+\mainmatter
+\setlength{\beforechapskip}{0mm}
+\renewcommand*\hourheight{7.4em}
+\renewcommand*\daywidth{23cm}
+\renewcommand*\titlewidth{11cm}
+\renewcommand*\sessionWidth{1.5cm}
+\chapter*[Monday 17/9/2012\\QEST 2012 Workshops \& Tutorials]{Monday}
+\inputDay{generated/qest0}%
+\renewcommand*\titlewidth{19.8cm}
+\chapter*[Tuesday 18/9/2012\\QEST]{Tuesday}
+\inputDay{generated/qest1}%
+\chapter*[Tuesday 18/9/2012\\FORMATS]{Tuesday}
+\inputDay{generated/formats1}%
+\chapter*[Wednesday 19/9/2012\\QEST]{Wednesday}
+\inputDay{generated/qest2}%
+\chapter*[Wednesday 19/9/2012\\FORMATS]{Wednesday}
+\inputDay{generated/formats2}%
+\chapter*[Thursday 20/9/2012\\QEST]{Thursday}
+\inputDay{generated/qest3}%
+\chapter*[Thursday 20/9/2012\\FORMATS]{Thursday}
+\inputDay{generated/formats3}%
+\end{document}
+
+
+

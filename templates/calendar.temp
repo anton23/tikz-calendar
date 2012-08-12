@@ -1,0 +1,100 @@
+\begin{tikzpicture}[calendar]
+    {%- set max = max_hour|round( method='ceil') -%}
+    {%- set min = min_hour|round( method='floor') -%}
+    {% for h in range(max|int - min|int + 1) %}
+            {%- set hour = (min + h) | int -%}
+            {% if hour >= min_hour and hour <= max_hour -%}
+                \draw (1 - \hourline, {{ hour }}) -- ( {{ days| length + 1 }} + \hourlineright, {{ hour }});\node[anchor= east,timelabel] at (1 - \hourline,{{ hour }}){{'{'}}{{"%.2d"|format(hour)}}};
+            {% endif -%}
+            {% if hour + 0.25 >= min_hour and hour + 0.25 <= max_hour -%}
+                \draw[densely dotted] (1 - \quarterhourline,{{ hour }} + 0.25) -- ( {{ days| length + 1 }} + \quarterhourlineright, {{ hour }} + 0.25);
+            {% endif -%}
+            {% if hour + 0.5 >= min_hour and hour + 0.5 <= max_hour -%}
+                \draw[densely dashed] (1 - \halfhourline,{{ hour }} + 0.5) -- ( {{ days| length + 1 }} + \halfhourlineright, {{ hour }} + 0.5);
+            {% endif -%}
+            {% if hour + 0.75 >= min_hour and hour + 0.75 <= max_hour -%}
+                \draw[densely dotted] (1 - \quarterhourline,{{ hour }} + 0.75) -- ( {{ days| length + 1 }} + \quarterhourlineright, {{ hour }} + 0.75);
+            {% endif -%}
+    {%- endfor %}
+
+    % Draw some day dividers.
+    {%- set ie = 0 -%}
+    {% for d in days %}
+        {% set iday = loop.index -%}
+        {%- set id = loop.index -%}
+        {% if column_titles -%}
+            {% for c in column_titles %}
+               \node[columntitle={{'{'}}{{ c.width }}},
+               fill={{ c.colour }}] at ({{ iday + c.xpos}}, {{min_hour}})  {
+                    {{c.title}}
+                };
+            {%- endfor %}
+        {%- endif %}
+
+       \draw ({{ loop.index }}, {{ min_hour }}) -- ({{ loop.index }}, {{ max_hour }});
+       {% if daytitle -%}
+        \node[daytitle] at ({{ loop.index }}.5,{{ min_hour }}) {\ {{d[0].strftime('%A')}}\ {{"%.2d/%.2d/%.4d"| format(d[0].day, d[0].month, d[0].year)  }} };
+        {% endif %}
+        {% for event in d[1] -%}   
+            {% set ie = ie + 1 %}
+            {%- if event['start'].hour + event['start'].minute/60.0 <= max_hour and 
+                   event['start'].hour + event['start'].minute/60.0 >= min_hour%}
+            {% set endT = event['end'] if event['end'].hour + event['end'].minute/60.0 <= max_hour 
+                         else
+                         event['end'].replace(hour=max_hour|int,minute=((max_hour-max_hour|int)
+                         * 60.0)|int )%}
+            {% set dur = endT - event['start'] -%}
+            {% if event.talks -%}
+                {% set durT = dur.seconds/(3600 * event.talks|length) %}
+                {% for talk in event.talks -%}
+                {% set ie = ie + 1 %}
+                {% set entryType = 'entryS' if session_bars
+                                   else 'entry' -%}
+                 \node[{{entryType}}={
+                   {{ durT }}}{
+                  {{ event['width']}}},fill={{event['color']}}] at ({{ iday +
+                  event['column'] }}, {{ event['start'].hour +
+                  event['start'].minute/60.0 + (loop.index - 1)*durT }}) (e{{ie}})
+                  {\begin{tabular}{l@{ }p{\titlewidth }} {
+                     {{ "%.2d:%.2d"|format(talk['start'].hour,talk['start'].minute) }}}%
+                  &{\bfseries {{talk['title']}}} {% if (not min_dur or durT > min_dur) and (not
+                  max_length or (talk['title']|length) < max_length) %}\\&{%endif%} {{talk['authors']}}\end{tabular}};                
+
+                {% if loop.last -%}
+                \node[wherelabel] at (e{{ie}}.south east) {
+                    {{event['where']}}};
+                {% endif %}
+                {% endfor -%}
+                {% if session_bars -%}
+                 \node[entryR={
+                    {{ dur.seconds/3600 }}},fill={{event['color']}}!50] at ({{ iday + event['column'] }}, {{ event.talks[0]['start'].hour + event.talks[0]['start'].minute/60.0 }}) {
+                    {{ event.title if session_titles else '' }}};
+                {% endif %}
+            {% else -%}
+             \node[entry={
+               {{ dur.seconds/3600.0}}}{
+               {{ event['width']}}},fill={{event['color']}}] at ({{ iday + event['column'] }}, {{ event['start'].hour + event['start'].minute/60.0 }}) (e{{ie}}) {\bfseries {{event.title}} };
+              {% if endT < event['end'] -%}
+                \fill[fill={{event['color']}},line width=.2pt] ($(e{{ie}}.south
+                west) - (0,0.02)$) -- ($(e{{ie}}.south west) + (0,0.1)$) decorate [decoration={name=zigzag}] {-- ($(e{{ie}}.south east) +
+                (0,0.1)$)} -- ($(e{{ie}}.south east) - (0,0.02)$); 
+              {% endif %}
+
+            \node[wherelabel] at (e{{ie}}.south east) {
+                {{event['where']}}};
+
+            \node[whenlabel] at (e{{ie}}.north west) {
+                {{"%.2d:%.2d"|format(event['start'].hour,event['start'].minute)}}
+                {%- if endT < event['end'] -%}                    
+                {{" -- %.2d:%.2d"|format(event['end'].hour,event['end'].minute)}}
+                {%- endif -%}
+                };
+
+            {% endif -%}
+            {% endif -%}
+        {% endfor -%}
+    {% endfor -%}
+    \draw ({{ days|length + 1}}, {{ min_hour }}) -- ({{ days|length + 1}}, {{ max_hour }});
+
+\end{tikzpicture}
+
