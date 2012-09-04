@@ -15,12 +15,15 @@
 \definecolor{mygreen}{RGB}{147,166,5}
 \definecolor{myred}{RGB}{204,39,56}
 
+\definecolor{qt}{RGB}{255,228,135}
+
 \colorlet{color1}{mylight}
 \colorlet{color2}{myblue}
 \colorlet{color3}{myyellow!60}
 \colorlet{color4}{mydark!50}
 \colorlet{color5}{mygreen!70}
 \colorlet{color6}{myred!50}
+\colorlet{color7}{qt!50}
 
 \tikzset{
   rectangle with rounded corners north west/.initial=4pt,
@@ -69,9 +72,9 @@
 \newcommand*\sessionWidth{2cm}
 \newcommand*\hourheight{6em}
 
-\newcommand*\hourline{0.02}
-\newcommand*\halfhourline{0.01}
-\newcommand*\quarterhourline{0.005}
+\newcommand*\hourline{0.01}
+\newcommand*\halfhourline{0.005}
+\newcommand*\quarterhourline{0.0025}
 
 \newcommand*\hourlineright{0}
 \newcommand*\halfhourlineright{0}
@@ -120,8 +123,6 @@
 
 \tikzset{calendar/.style = {
     baseline = (current bounding box.north),
-    scale = 0.8,
-    transform shape,
     y = -\hourheight,
     x = \daywidth
 }}
@@ -156,7 +157,7 @@
     fill=blue!20,
     minimum height={#1*\hourheight-0.4em},
     draw,
-    inner sep=0.1em,
+    inner sep=0.05em,
     yshift = {-0.2em}
 }}
 

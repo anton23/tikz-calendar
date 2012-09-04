@@ -4,57 +4,82 @@
 <GoogleEvents feed_uri="https://www.google.com/calendar/feeds/uap13rdfkt473klphn1fimnd0c%40group.calendar.google.com/public/basic"/>
 
 <ColourMap default="color1">
+    <set location="SAF Building" colour="color1"/>
     <set location="" colour="color1"/>
+    <set location=" Room 121" colour="color5"/>
+    <set location="Room 121" colour="color1"/>
+    <set location="Queen's Tower Rooms" colour="color1"/>
+    <set location="Queen's Tower" colour="color7"/>
     <set location="Room G34" colour="color2"/>
+    <set location="Room 122" colour="color4"/>
     <set location="Room A" colour="color4"/>
     <set location="Room B" colour="color5"/>
-    <set location="Senior Common Room" colour="color3"/>
+
+    <set location="Rooms 119 and 120" colour="color2"/>
+
+    <set location="170 Queen's Gate" colour="color3"/>
     <set location="58 Prince's Gate" colour="color3"/>
-    <set location="Queen's Tower" colour="color1"/>
+    <set location="58 Prince's Gate" colour="color3"/>
+    <set location="Outside SAF Building" colour="color3"/>
+    <set location="Westminster Pier" colour="color3"/>
     <set location="TBC" colour="color3"/>
     <set location=" " colour="white, opacity=0.9"/>
 </ColourMap>
 
 <ColumnMap id="Tutorials">
-    <set location="Room G34" xpos="0.8" width="0.2"/>
-    <set location="Room A" xpos="0" width="0.6"/>
-    <set location="Room B" xpos="0.6" width="0.2"/>
+    <set location="SAF Building" xpos="0" width="1"/>
+    <set location="Rooms 119 and 120" xpos="0" width="0.2"/>
+    <set location=" Room 121" xpos="0.2" width="0.2"/>
+    <set location="Room 122" xpos="0.4" width="0.6"/>
     <set location="" xpos="0" width="1"/>
     <set location="58 Prince's Gate" xpos="0" width="1"/>
     <set location="Queen's Tower" xpos="0" width="1"/>
     <ColumnException title="Keynote" xpos="0" width="1"/>
+    <ColumnException title="Opening remarks" xpos="0" width="1"/>
 </ColumnMap>
 
 
-<ColumnMap id="QEST" min_dur="0.25" max_length="110">
+<ColumnMap id="QEST" min_dur="0.25" max_length="95">
+    <set location="SAF Building" xpos="0" width="1"/>
     <set location="Room G34" xpos="0" width="1"/>
+    <set location="Room 121" xpos="0" width="1"/>
     <set location="" xpos="0" width="1"/>
-    <set location="Senior Common Room" xpos="0" width="1"/>
+    <set location="Queen's Tower Rooms" xpos="0" width="1"/>
+    <set location="170 Queen's Gate" xpos="0" width="1"/>
     <set location="Queen's Tower" xpos="0" width="1"/>
+    <set location="Outside SAF Building" xpos="0" width="1"/>
+    <set location="Westminster Pier" xpos="0" width="1"/>
 
-    <TalkException title="Specification and computation of passage-time distributions in GPA" new_authors = "Kohut, Hayden, Stefanek, Bradley"/>
+    <TalkException title="Specification and computation of passage-time distributions in GPA" new_authors = "Kohut,Hayden,Stefanek,Bradley"/>
 </ColumnMap>
 
-<ColumnMap id="FORMATS" min_dur="0.25" max_length="110">
-    <set location="Room A" xpos="0" width="1"/>
+<ColumnMap id="FORMATS" min_dur="0.25" max_length="95">
+    <set location="SAF Building" xpos="0" width="1"/>
+    <set location="Room 122" xpos="0" width="1"/>
     <set location="" xpos="0" width="1"/>
     <set location=" " xpos="0" width="1"/>
+    <set location="Room 121" xpos="0" width="1"/>
+    <set location="Queen's Tower Rooms" xpos="0" width="1"/>
     <set location="Senior Common Room" xpos="0" width="1"/>
+    <set location="170 Queen's Gate" xpos="0" width="1"/>
     <set location="Queen's Tower" xpos="0" width="1"/>
+    <set location="Outside SAF Building" xpos="0" width="1"/>
+    <set location="Westminster Pier" xpos="0" width="1"/>
+
 </ColumnMap>
 
 
 <Calendar output="examples/generated/qest0.tex" columnMap="Tutorials" daytitle="False">
     <start year="2012" month="9" day="17"/>
     <end year="2012" month="9" day="17"/>
-    <minTime hour="8" minute="30"/>
+    <minTime hour="8" minute="15"/>
     <maxTime hour="19" minute="30"/>
 </Calendar>
 
 <Calendar output="examples/generated/qest1.tex" columnMap="QEST" daytitle="False">
     <start year="2012" month="9" day="18"/>
     <end year="2012" month="9" day="18"/>
-    <minTime hour="8" minute="30"/>
+    <minTime hour="8" minute="15"/>
     <maxTime hour="19" minute="30"/>
 </Calendar>
 
@@ -75,7 +100,7 @@
 <Calendar output="examples/generated/formats1.tex" columnMap="FORMATS" daytitle="False">
     <start year="2012" month="9" day="18"/>
     <end year="2012" month="9" day="18"/>
-    <minTime hour="8" minute="30"/>
+    <minTime hour="8" minute="15"/>
     <maxTime hour="19" minute="30"/>
 </Calendar>
 

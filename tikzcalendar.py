@@ -390,7 +390,7 @@ class Calendar(object):
                 min_dur = column_map.min_dur, max_length = column_map.max_length,
                 session_bars=session_bars)
             directory = '/'.join(filename.split('/')[:-1])
-            if not os.path.exists(directory):
+            if directory and not os.path.exists(directory):
                 os.makedirs(directory)
             f = codecs.open(filename, 'w',encoding='utf-8')
             f.write(s)
